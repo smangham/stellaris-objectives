@@ -1,0 +1,26 @@
+﻿l_english:
+ objective_singularity_ship_size:0 "Singularity"
+ objective_singularity_ship_size_plural:0 "Singularities"
+ objective_singularity_ship:0 "Technosphere"
+ objective_singularity_ship_plural:0 "Technospheres" 
+ objective_singularity_section_template:0 "Technosphere"
+ OBJECTIVE_SINGULARITY_COMPONENT_SET:0 "Technosphere"
+ OBJECTIVE_SINGULARITY_COMPONENT_SET_DESC:0 "Technosphere"
+ 
+ OBJECTIVE_SINGULARITY_WEAPON:0 "Upload Beam"
+ OBJECTIVE_SINGULARITY_WEAPON_ACTION:0 "Upload planet"
+ FLEETORDER_DESTROY_PLANET_WITH_OBJECTIVE_SINGULARITY_WEAPON:0 "Uploading planet"
+ MESSAGE_DESC_FOR_OBJECTIVE_SINGULARITY_WEAPON:0 "was uploaded to the Singularity by"
+ 
+ casus_belli_objective_singularity_cb:0 "Forced Upload"
+ objective_singularity_wg:0 "Forced Upload"
+ 
+ mod_country_base_physics_research_produces_add:0 "Monthly £physics£ Physics Research"
+ mod_country_base_society_research_produces_add:0 "Monthly £society£ Society Research"
+ mod_country_base_engineering_research_produces_add:0 "Monthly £engineering£ Engineering Research"
+ objective_singularity_country:0 "Singularity Constructed"
+ objective_singularity_country_desc:0 "Singularity Desc"
+ 
+ objective_singularity_trait:0 "Singularity Core"
+ objective_singularity_trait_desc:0 "The Singularity Technosphere is controlled by untold billions of independent minds via collective discussion and debate."
+ 

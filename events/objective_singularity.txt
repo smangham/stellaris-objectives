@@ -1,0 +1,318 @@
+namespace = objective_singularity
+
+#planet_event = {
+#	id = planet_destruction.1
+#	is_triggered_only = yes
+#	hide_window = yes
+#
+#	immediate = {
+#		remove_planet = yes
+#	}
+#}
+
+# Add static war exhaustion for these planet destruction events with: 
+# add_static_war_exhaustion = {
+#				attacker = <country>		 				# attacker in this battle
+#				location = <planet>							# location for battle
+#				value_for_planet_destruction = <0.0-1.0>	# scale amount of WE added to this battle
+#			}
+
+
+
+# Nanobot Assimilation
+planet_event = {
+	id = objective_singularity.1000
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = { # remove hive mind?
+		if = {
+			limit = {
+				exists = owner
+				owner = { NOT = { is_same_value = from.owner } }					
+			}
+			from.owner = { country_event = { id = objective_singularity.1001 } }
+		}
+		
+		if = {
+			limit = {
+				exists = owner
+				owner = {
+					NOT = { is_same_value = from.owner }
+					OR = {
+						is_country_type = default
+						is_country_type = fallen_empire
+						is_country_type = awakened_fallen_empire
+					}
+				}
+			}
+			# Generate threat
+			add_threat = { who = from.owner amount = 3 }
+			# modifier for allies + those upset by robots
+			every_country = {
+				limit = {
+					NOR = {
+						is_same_value = from.owner
+						is_same_value = root.owner
+						AND = {
+							has_federation = yes
+							is_in_federation_with = from.owner
+						}
+					}
+					OR = {
+						has_communications = from.owner
+						has_communications = root.owner
+					}
+					OR = {
+						AND = {
+							has_federation = yes
+							is_in_federation_with = root.owner
+						}
+						has_ai_personality = awakened_fallen_empire_spiritualist
+						AND = {
+							is_country_type = default
+							OR = {
+								is_egalitarian = yes
+								is_spiritualist = yes
+							}
+						}
+					}
+				}
+				add_opinion_modifier = {
+					modifier = opinion_assimilated_a_world
+					who = from.owner
+				}
+			}
+			# modifiers for victim
+			owner = {
+				add_opinion_modifier = {
+					modifier = opinion_assimilated_my_world
+					who = from.owner
+				}
+				if = {
+					limit = { NOT = { has_ethic = ethic_gestalt_consciousness } }
+					add_modifier = {
+						modifier = colossus_victim
+						days = 10800 # 30 years
+					}
+				}
+			}
+			# Add war exhaustion to planet owner 
+			owner = {
+				add_static_war_exhaustion = {
+					attacker = from.fleet.owner
+					location = root
+					value_for_planet_destruction = 1.0
+				}
+			}
+		}
+		
+		every_owned_pop = {
+			limit = {
+				OR = {
+					has_trait = trait_mechanical
+					has_trait = trait_cybernetic
+				}
+			}
+			from.owner = {
+				change_variable = {
+					which = objective_singularity_uploads
+					value = 1.0
+				}
+			}
+			kill_pop = yes
+			
+			from.owner = {
+				add_event_chain_counter = {
+					event_chain = objective_singularity_chain_upload 
+					counter = objective_singularity_counter_upload
+					amount = 1 
+				} 
+			}
+		}
+		every_owned_pop = {
+			limit = {
+				OR = {
+					has_trait = trait_hive_mind
+					has_trait = trait_machine_unit
+				}
+			}
+			kill_pop = yes
+			
+			from.owner = {
+				add_event_chain_counter = {
+						event_chain = objective_singularity_chain_upload 
+						counter = objective_singularity_counter_upload
+						amount = 1 
+					} 
+			}
+		}
+		every_owned_pop = {
+			limit = {
+				is_sapient = yes
+			}
+			prev = {			
+				change_variable = {
+					which = objective_singularity_uploads
+					value = 0.5
+				}
+			}
+			kill_pop = yes
+			
+			from.owner = {
+				add_event_chain_counter = {
+					event_chain = objective_singularity_chain_upload 
+					counter = objective_singularity_counter_upload
+					amount = 1
+				} 
+			}
+		}
+		
+		# destroy habitats and ringworlds
+		if = {
+			limit = {
+				is_planet_class = pc_habitat
+			}
+			spawn_habitat_cracker_effect = yes
+			remove_planet = yes
+		}
+		else_if = {
+			limit = {
+				is_planet_class = pc_ringworld_habitable
+			}
+			spawn_ringworld_nanobot_effect = yes
+			change_pc = pc_ringworld_habitable_damaged
+		}
+		else = {
+			change_pc = pc_nuked 
+			add_modifier = {
+				modifier = objective_singularity_uploaded_planet
+				days = 18000
+			}
+		}
+		
+		# Has the population of the empire been completely uploaded?
+		objective_singularity_apply_modifiers = yes
+		from.owner = {
+			country_event = { id = objective_singularity_quest.3000 }
+		}
+	}
+}
+
+# ==============================================================================
+# Pop-up for the first time a planet is assimilated
+# ==============================================================================
+country_event = {
+	id = objective_singularity.1001
+	title = objective_singularity.1001.name
+	desc = objective_singularity.1001.desc
+	picture = GFX_evt_sapient_AI
+	show_sound = event_mystic_reveal
+	location = from
+	
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { has_country_flag = objective_singularity_flag_planet_killed }
+	}
+
+	immediate = {
+		set_country_flag = objective_singularity_flag_planet_killed
+	}
+
+	option = {
+		name = OK
+		from = {
+			custom_tooltip = objective_singularity.1001.tooltip
+		}
+	}
+}
+
+# ==============================================================================
+# Fleet events for keeping the singularity sphere busy
+# ==============================================================================
+@objective_singularity_auto_upload_mtth = 3
+@objective_singularity_auto_upload_days = 7
+@objective_singularity_auto_upload_flag_days = 8
+
+fleet_event = {
+	id = objective_singularity.1010
+	is_triggered_only = no
+	hide_window = yes
+	
+	trigger = {
+		has_fleet_flag = objective_singularity_fleet_flag
+		is_fleet_idle = yes
+		NOT = {
+			has_status = charging
+			has_status = firing
+			has_fleet_flag = objective_singularity_auto_upload_flag
+		}
+	}
+	
+	mean_time_to_happen = {
+		days = @objective_singularity_auto_upload_mtth
+	}
+	
+	immediate = {
+		queue_actions = {
+			find_closest_system = {
+				trigger = {
+					id = objective_singularity.1010.t1
+					any_system_planet = {
+						can_destroy_planet_with_OBJECTIVE_SINGULARITY_WEAPON = yes
+					}
+				}
+				
+				found_system = {
+					move_to = this
+						
+					find_closest_planet = {
+						trigger = {
+							id =  objective_singularity.1010.t2
+							can_destroy_planet_with_OBJECTIVE_SINGULARITY_WEAPON = yes
+						}
+						
+						found_planet = {
+							move_to = this
+							
+							orbit_planet = this
+							
+							effect = {
+								id = objective_singularity.1010.e1
+								set_timed_planet_flag =  { flag = objective_singularity_auto_upload_flag days = @objective_singularity_auto_upload_flag_days } 
+								root = { 
+									set_timed_fleet_flag = { flag = objective_singularity_auto_upload_flag days = @objective_singularity_auto_upload_flag_days } 
+									fleet_event = { id = objective_singularity.1011 days = @objective_singularity_auto_upload_days } 
+								}
+							}
+							wait = {
+								duration = @objective_singularity_auto_upload_flag_days
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+fleet_event = {
+	id = objective_singularity.1011
+	is_triggered_only = yes
+	hide_window = yes
+	
+	trigger = {
+		exists = orbit
+		orbit = {
+			has_planet_flag = objective_singularity_auto_upload_flag
+		}
+	}
+	
+	immediate = {
+		orbit = {
+			planet_event = { id = objective_singularity.1000 }
+		}
+	}
+}

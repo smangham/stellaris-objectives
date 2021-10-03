@@ -1,0 +1,33 @@
+﻿l_english:
+ OBJECTIVE_SINGULARITY_3a_PROJECT:0 "Strip-mine Neutronium"
+ OBJECTIVE_SINGULARITY_3a_PROJECT_DESC:0 "The Technosphere requires a vast neutronium shell. This Neutron Star is amenable to strip-mining for it."
+ OBJECTIVE_SINGULARITY_3b_PROJECT:0 "$OBJECTIVE_SINGULARITY_3a_PROJECT$@"
+ OBJECTIVE_SINGULARITY_3b_PROJECT_DESC:0 "$OBJECTIVE_SINGULARITY_3a_PROJECT_DESC$@"
+ OBJECTIVE_SINGULARITY_3c_PROJECT:0 "$OBJECTIVE_SINGULARITY_3a_PROJECT$@"
+ OBJECTIVE_SINGULARITY_3c_PROJECT_DESC:0 "$OBJECTIVE_SINGULARITY_3a_PROJECT_DESC$@"
+ OBJECTIVE_SINGULARITY_3d_PROJECT:0 "$OBJECTIVE_SINGULARITY_3a_PROJECT$@"
+ OBJECTIVE_SINGULARITY_3d_PROJECT_DESC:0 "$OBJECTIVE_SINGULARITY_3a_PROJECT_DESC$@"
+ 
+ objective_tech_singularity_engineering:0 "Neutronium Alloys"
+ objective_tech_singularity_engineering_desc:0 "Description"
+ objective_tech_singularity_physics:0 "Googlescale Computing"
+ objective_tech_singularity_physics_desc:0 "Description"
+ objective_tech_singularity_society:0 "Disembodied Consciousness"
+ objective_tech_singularity_society_desc:0 "Description"
+ 
+ objective_singularity_counter_built:0 "Stages of Singularity built"
+ objective_singularity_counter_neutronium:0 "Neutronium harvested"
+ objective_singularity_counter_researched:0 "Technologies researched"
+
+ objective_singularity_chain_quest_title:0 "Ascension - Singularity"
+ objective_singularity_chain_quest_desc:0 "Decades ago we transcended our biology and transferred our consciousnesses to immortal, mechanical shells. Now, it is time for us to take the next step; to shed the constraints of physical form, and upload our minds to a gargantuan computer; the Singularity. True immortality will be ours."
+ 
+ objective_singularity_quest.1000.name:0 "$objective_singularity_chain_quest_title$@"
+ objective_singularity_quest.1000.desc:0 "$objective_singularity_chain_quest_desc$@"
+ objective_singularity_quest.1001.name:0 "$objective_singularity_chain_quest_title$@"
+ objective_singularity_quest.1001.desc:0 "With the scaffold for the Singularity Technosphere built, we can begin work on the inner frame. This will require a truly prodigious quantity of materials, enough to construct a planet-sized sphere of memory banks, cooling systems and self-repair systems."
+ objective_singularity_quest.1002.name:0 "$objective_singularity_chain_quest_title$@"
+ objective_singularity_quest.1002.desc:0 "With the support systems constructed, we must now turn our attentions to the central processing unit of the Singularity- the nexus through which all our minds will flow eternally. Conventional positronic computers will not suffice."
+ objective_singularity_quest.1003.name:0 "$objective_singularity_chain_quest_title$@"
+ objective_singularity_quest.1003.desc:0 "Now the central processing unit is complete, our eternal consciousnesses are safe. We need only secure the processing unit, and uploads can begin. A thick shell of impermiable neutronium will encase it, as a skull encases the brain."
+ objective_singularity_quest.1001.tooltip:0 "Tooltip"

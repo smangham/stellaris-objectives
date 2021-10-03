@@ -1,0 +1,268 @@
+namespace = objective_singularity_quest
+
+
+# ==============================================================================
+# TECHNOLOGY RESEARCHED
+# ------------------------------------------------------------------------------
+# The quest begins with the player building the megastructure.
+# Start the event chain, spawn the projects.
+# ==============================================================================
+country_event = {
+	id = objective_singularity_quest.1000
+	title = objective_singularity_quest.1000.name
+	desc = objective_singularity_quest.1000.desc
+	picture = GFX_evt_sapient_AI
+	show_sound = event_mystic_reveal
+	
+	is_triggered_only = yes
+	fire_only_once  = yes
+	
+	trigger = {
+		has_technology = objective_tech_singularity_society
+	}
+	
+	immediate = {
+		begin_event_chain = {
+			event_chain = objective_singularity_chain_quest
+			target = root
+		}
+	}
+	
+	option = {
+		name = "OK"
+	}
+}
+
+
+# ==============================================================================
+# BASICS BUILT
+# ------------------------------------------------------------------------------
+# The player has built the scaffold. Must build the base.
+# ==============================================================================
+country_event = {
+	id = objective_singularity_quest.1001
+	title = objective_singularity_quest.1001.name
+	desc = objective_singularity_quest.1001.desc
+	picture = GFX_evt_sapient_AI
+	show_sound = event_mystic_reveal
+	
+	is_triggered_only = yes
+	fire_only_once  = yes
+	
+	immediate = {
+	}
+	
+	option = {
+		name = "OK"
+	}
+}
+
+
+# ==============================================================================
+# FRAME BUILT
+# ------------------------------------------------------------------------------
+# The player has built the frame. Add the core technology option.
+# ==============================================================================
+country_event = {
+	id = objective_singularity_quest.1002
+	title = objective_singularity_quest.1002.name
+	desc = objective_singularity_quest.1002.desc
+	picture = GFX_evt_sapient_AI
+	show_sound = event_mystic_reveal
+
+	is_triggered_only = yes
+	fire_only_once  = yes
+	
+	immediate = {
+	}
+	
+	option = {
+		name = "OK"
+		add_research_option = objective_tech_singularity_physics
+	}
+}
+
+
+# ==============================================================================
+# CORE BUILT
+# ------------------------------------------------------------------------------
+# The player has built the core. Add the shell technology option.
+# ==============================================================================
+country_event = {
+	id = objective_singularity_quest.1003
+	title = objective_singularity_quest.1003.name
+	desc = objective_singularity_quest.1003.desc
+	picture = GFX_evt_sapient_AI
+	show_sound = event_mystic_reveal
+	
+	is_triggered_only = yes
+	fire_only_once  = yes
+	
+	immediate = {
+	}
+	
+	option = {
+		name = "OK"
+		add_research_option = objective_tech_singularity_engineering
+		
+		random_planet = {
+			limit = {
+				OR = {
+					is_planet_class = pc_neutron_star 
+					is_planet_class = pc_pulsar 
+				}
+				NOT = {
+					has_planet_flag = objective_singularity_flag_neutron_star
+				}
+			}
+			enable_special_project = {
+				name = "OBJECTIVE_SINGULARITY_3a_PROJECT"
+				location = this
+				owner = root
+			}
+			set_planet_flag = objective_singularity_flag_neutron_star
+		}
+		
+		random_planet = {
+			limit = {
+				OR = {
+					is_planet_class = pc_neutron_star 
+					is_planet_class = pc_pulsar 
+				}
+				NOT = {
+					has_planet_flag = objective_singularity_flag_neutron_star
+				}
+			}
+			enable_special_project = {
+				name = "OBJECTIVE_SINGULARITY_3b_PROJECT"
+				location = this
+				owner = root
+			}
+			set_planet_flag = objective_singularity_flag_neutron_star
+		}
+		
+		random_planet = {
+			limit = {
+				OR = {
+					is_planet_class = pc_neutron_star 
+					is_planet_class = pc_pulsar 
+				}
+				NOT = {
+					has_planet_flag = objective_singularity_flag_neutron_star
+				}
+			}
+			enable_special_project = {
+				name = "OBJECTIVE_SINGULARITY_3c_PROJECT"
+				location = this
+				owner = root
+			}
+			set_planet_flag = objective_singularity_flag_neutron_star
+		}
+		
+		random_planet = {
+			limit = {
+				OR = {
+					is_planet_class = pc_neutron_star 
+					is_planet_class = pc_pulsar 
+				}
+				NOT = {
+					has_planet_flag = objective_singularity_flag_neutron_star
+				}
+			}
+			enable_special_project = {
+				name = "OBJECTIVE_SINGULARITY_3d_PROJECT"
+				location = this
+				owner = root
+			}
+			set_planet_flag = objective_singularity_flag_neutron_star
+		}
+	}
+}
+# ==============================================================================
+# QUEST FINISHED SUCCESSFULLY
+# ------------------------------------------------------------------------------
+# Change country when the quest ends
+# ==============================================================================
+country_event = {
+	id = objective_singularity_quest.3000
+	title = objective_singularity_quest.3000.name
+	desc = objective_singularity_quest.3000.desc
+	picture = GFX_evt_sapient_AI
+	show_sound = event_mystic_reveal
+	location = from
+	
+	is_triggered_only = yes
+	fire_only_once  = yes
+	
+
+	trigger = {
+		count_owned_pops = 0
+		NOT = { is_country_type = objective_singularity_country_type }
+	}
+
+	immediate = {
+		set_country_type = objective_singularity_country_type
+		
+		create_species = {
+			name = "Singularity"
+			class = "ROBOT"
+			portrait = "ai_crisis_2"
+			immortal = yes
+			namelist = this
+			plural = this
+			traits = {
+				trait = trait_mechanical
+			}
+			effect = { save_event_target_as = objective_singularity_species }
+		}
+		
+		every_owned_leader = {
+			change_species = last_created
+		}
+		every_pool_leader = {
+			change_species = last_created
+		}
+		change_dominant_species = { 
+			species = last_created
+			change_all = yes 
+		}
+		
+		every_owned_starbase = {
+			destroy_fleet = this
+		}
+		
+		every_country = {
+			limit = { 
+				is_ai = no
+				NOT = { is_same_empire = root }
+			}
+			country_event = {
+				id = objective_singularity_quest.3999
+			}
+		}
+	}
+
+	option = {
+		name = EXCELLENT
+	}
+}
+
+
+# ==============================================================================
+# QUEST FINISHED SUCCESSFULLY: WARN OTHERS
+# ------------------------------------------------------------------------------
+# Let other empires know that they have succeeded
+# ==============================================================================
+country_event = {
+	id = objective_singularity_quest.3999
+	title = objective_singularity_quest.3999.name
+	desc = objective_singularity_quest.3999.desc
+	picture = GFX_evt_technosphere
+
+	is_triggered_only = yes
+
+	option = {
+		name = UNFORTUNATE
+	}
+}
+

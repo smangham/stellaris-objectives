@@ -1,0 +1,25 @@
+objective_singularity_uploaded_planet = {
+	pop_environment_tolerance = -10.0
+}
+
+##########################################################################
+# Country Modifiers
+##########################################################################
+
+objective_singularity_country = {	
+	shipsize_colonizer_build_speed_mult = 100.0
+	ship_colonizer_cost_mult = 100.0
+	country_claim_influence_cost_mult = 100.0
+	country_starbase_influence_cost_mult = 100.0
+	pop_growth_speed  = -100.0
+	pop_assembly_speed  = -100.0
+}
+
+##########################################################################
+# Ship Modifiers
+##########################################################################
+# Temporary testing modifier
+objective_singularity_fleet = {
+	ship_ftl_jumpdrive_range_mult = 10.0
+}
+

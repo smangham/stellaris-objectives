@@ -1,0 +1,18 @@
+﻿l_english:
+ objective_singularity_chain_upload_title:0 "Ascension: Singularity"
+ objective_singularity_chain_upload_desc:0 "Our Singularity Technosphere has been constructed. Now we simply need to upload our minds to it- finally freeing ourselves from the bounds of mortality. Should we wish, we may upload others too..."
+ 
+ objective_singularity.1001.name:0 "$objective_singularity_chain_upload_title$@"
+ objective_singularity.1001.desc:0 "We have uploaded our first planet to our Singularity. The residents will now live forever within it, in an electronic paradise of pure thought."
+ objective_singularity_quest.3000.name:0 "$objective_singularity_chain_upload_title$@"
+ objective_singularity_quest.3000.desc:0 "The last of our people has joined the Singularity. We are no longer constrained by the petty bounds of mortality and physical need. Our people will live eternally, in an electronic matrix shaped by the power of pure thought, even as the stars themselves gutter and die.\n\n$ROur Ascension is complete!§!" 
+ objective_singularity_quest.3999.name:0 "$objective_singularity_chain_upload_title$@"
+ objective_singularity_quest.3999.desc:0 "[From.GetName] has uploaded their Empire to a Singularity. They will live forever in an electronic paradise.\n\n§RTheir Ascension is complete!§!"
+
+ objective_singularity_uploaded_planet:0 "All sentient life and electronic data on this planet has been uploaded to the Singularity."
+
+ objective_singularity_counter_upload:0 "Uploaded Pops"
+ objective_singularity_counter_upload:0 "Pops uploaded to the Singularity."
+
+ objective_score:0 "Score"
+ objective_score_desc:0 ""

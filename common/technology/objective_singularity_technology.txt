@@ -1,0 +1,152 @@
+objective_tech_singularity_engineering = {
+	area = engineering
+	cost = @tier5cost3
+	tier = 5
+	category = { voidcraft }
+	ai_update_type = all
+	prerequisites = { "objective_tech_singularity_society" }
+	weight = @tier5weight3
+	is_rare = yes
+		
+	potential = {
+		host_has_dlc = "Utopia"
+	}
+	
+	weight_modifier = {
+		factor = 0.25
+		modifier = {
+			factor = 0
+			NOT = {has_ascension_perk = ap_synthetic_evolution}
+		}
+		modifier = {
+			factor = 2
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_maniacal"
+			}
+		}
+		modifier = {
+			factor = 2
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_spark_of_genius"
+			}
+		}
+		modifier = {
+			factor = 2
+			OR = {
+				has_ascension_perk = ap_galactic_wonders_utopia
+				has_ascension_perk = ap_galactic_wonders_utopia_and_megacorp
+			}
+		}
+		modifier = {
+			factor = 6
+			has_ascension_perk = ap_master_builders
+		}
+		modifier = {
+			factor = 6
+			has_ascension_perk = ap_enigmatic_engineering
+		}
+		modifier = {
+			factor = @ap_technological_ascendancy_rare_tech
+			has_ascension_perk = ap_technological_ascendancy
+		}
+	}
+	
+	ai_weight = {
+		factor = 0
+	}
+}
+
+objective_tech_singularity_society = {
+	cost = @tier5cost3
+	area = society
+	tier = 5
+	category = { computing }
+	prerequisites = { "tech_mega_engineering" }
+	is_rare = yes
+	weight = @tier5weight3
+
+	ai_weight = {
+		modifier = {
+			factor = 2
+			research_leader = {
+				area = society
+				has_trait = "leader_trait_maniacal"
+			}
+		}
+		modifier = {
+			factor = 2
+			research_leader = {
+				area = society
+				has_trait = "leader_trait_spark_of_genius"
+			}
+		}
+		modifier = {
+			factor = 2
+			OR = {
+				has_ascension_perk = ap_galactic_wonders_utopia
+				has_ascension_perk = ap_galactic_wonders_utopia_and_megacorp
+			}
+		}
+		modifier = {
+			factor = 6
+			has_ascension_perk = ap_master_builders
+		}
+		modifier = {
+			factor = 6
+			has_ascension_perk = ap_enigmatic_engineering
+		}
+		modifier = {
+			factor = @ap_technological_ascendancy_rare_tech
+			has_ascension_perk = ap_technological_ascendancy
+		}
+	}
+}
+
+
+objective_tech_singularity_physics = {
+	cost = @tier5cost3
+	area = physics
+	tier = 5
+	category = { computing }
+	prerequisites = { "objective_tech_singularity_society" }
+	is_rare = yes
+	weight = @tier5weight3
+
+	ai_weight = {
+		modifier = {
+			factor = 2
+			research_leader = {
+				area = society
+				has_trait = "leader_trait_maniacal"
+			}
+		}
+		modifier = {
+			factor = 2
+			research_leader = {
+				area = society
+				has_trait = "leader_trait_spark_of_genius"
+			}
+		}
+		modifier = {
+			factor = 2
+			OR = {
+				has_ascension_perk = ap_galactic_wonders_utopia
+				has_ascension_perk = ap_galactic_wonders_utopia_and_megacorp
+			}
+		}
+		modifier = {
+			factor = 6
+			has_ascension_perk = ap_master_builders
+		}
+		modifier = {
+			factor = 6
+			has_ascension_perk = ap_enigmatic_engineering
+		}
+		modifier = {
+			factor = @ap_technological_ascendancy_rare_tech
+			has_ascension_perk = ap_technological_ascendancy
+		}
+	}
+}

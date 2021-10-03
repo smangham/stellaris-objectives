@@ -1,0 +1,11 @@
+﻿l_english:
+ objective_singularity_0:0 "Singularity Technosphere"
+ objective_singularity_0_NAME:0 "Singularity Technosphere"
+ objective_singularity_0_DESC:0 "The Singularity will be a vast, spherical computer into which the minds of our entire empire will one day be uploaded to, granting them eternal life."
+ objective_singularity_0_MEGASTRUCTURE_DETAILS:0 "Construction site at which our Singularity Technosphere will be built."
+ objective_singularity_1:0 "Singularity Substructure"
+ objective_singularity_1_DESC:0 "A near planet-sized core with powerful engines, "
+ objective_singularity_2:0 "Singularity Core"
+ objective_singularity_2_DESC:0 "A dark matter reactor powering a colossal positronic computer, the near-infinite memory banks optimised for the upload of sentient minds."
+ objective_singularity_3:0 "Singularity Superstructure"
+ objective_singularity_3_DESC:0 "A thick neutronium shell, shielding the electronic paradise within from the hostile universe beyond."

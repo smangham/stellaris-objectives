@@ -1,0 +1,293 @@
+@entity_x				= 0
+@entity_y 				= -20
+
+@objective_singularity_megastructure_0_time = 1 # 1800
+@objective_singularity_megastructure_0_alloys = 1 # 5000
+@objective_singularity_megastructure_0_influence = 1 # 300
+
+@objective_singularity_megastructure_1_time = 1 # 1800
+@objective_singularity_megastructure_1_alloys = 1 # 10000
+@objective_singularity_megastructure_1_living_metal = 1 # 300
+
+@objective_singularity_megastructure_2_time = 1 # 1800
+@objective_singularity_megastructure_2_darkmatter = 1 # 500
+@objective_singularity_megastructure_2_crystals = 1 # 5000
+# Also needs research complete
+
+@objective_singularity_megastructure_3_time = 1 # 1800
+@objective_singularity_megastructure_3_alloys = 1 # 10000
+@objective_singularity_megastructure_3_energy = 1 # 50000
+# Also needs neutronium
+
+
+# fromfrom = Structure
+# fromfrom.planet = Planet built around
+# from = Country
+
+
+# ==============================================================================
+# MEGASTRUCTURE 0: CONSTRUCTION PLATFORM
+# ------------------------------------------------------------------------------
+# The first stage of the quest
+# ==============================================================================
+objective_singularity_0 = {
+	entity = "construction_platform_entity"
+	construction_entity = "construction_platform_entity"
+	portrait = "GFX_megastructure_construction_background"
+	place_entity_on_planet_plane = no
+
+	entity_offset = { x = @entity_x y = @entity_y }
+
+	build_time = @objective_singularity_megastructure_0_time
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = @objective_singularity_megastructure_0_alloys
+			influence = @objective_singularity_megastructure_0_influence
+		}
+	}
+	
+	potential = {
+		NOT = { has_country_flag = objective_flag_built_singularity }
+	}
+	
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_inside_border"
+			is_inside_border = from
+		}
+	}
+	
+	placement_rules = {
+		planet_possible = {
+			custom_tooltip = {
+				fail_text = "requires_survey_not_habitable"
+				is_surveyed = {			# prevent leaking habitability information
+					who = prev.from
+					status = yes
+				}
+				colonizeable_planet = no
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_anomaly"
+				NOT = { has_anomaly = yes }
+			}
+
+ 			# balance for think tanks
+			custom_tooltip = {
+				fail_text = "requires_not_minor_planetary_body"
+				NOR = {
+					is_asteroid = yes
+					is_moon = yes
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_not_star"
+				is_star = no
+			}
+			custom_tooltip = {
+				fail_text = "requires_not_ring_world"
+				is_ringworld = no
+			}
+		} # use these for all non-star megastructures
+	}
+	
+	# root = system
+	# from = country	
+	ai_weight = {
+		factor = 0
+	}
+	
+	on_build_start = {}
+	on_build_cancel = {}
+	on_build_complete = {
+		root.owner = { 
+			set_country_flag = objective_flag_built_singularity
+			country_event = {
+				id = objective_singularity_quest.1001
+			}
+		}
+	}
+}
+
+
+# ==============================================================================
+# MEGASTRUCTURE 1: CHASSIS
+# ------------------------------------------------------------------------------
+# Needs living metal and alloys
+# ==============================================================================
+objective_singularity_1 = {
+	entity = "construction_platform_entity"
+	construction_entity = "construction_platform_entity"
+	portrait = "GFX_megastructure_construction_background"
+	
+	place_entity_on_planet_plane = no
+	entity_offset = { x = @entity_x y = @entity_y }
+	
+	upgrade_from = {
+		objective_singularity_0
+	}
+
+	build_time = @objective_singularity_megastructure_1_time
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = @objective_singularity_megastructure_1_alloys
+			sr_living_metal = @objective_singularity_megastructure_1_living_metal 
+		}
+	}
+
+	on_build_complete = {
+		root.owner = {
+			country_event = {
+				id = objective_singularity_quest.1002
+			}
+		}
+	}
+}
+
+
+# ==============================================================================
+# MEGASTRUCTURE 2: CORE SYSTEMS
+# ------------------------------------------------------------------------------
+# Needs research, dark matter reactor and crystal core
+# ==============================================================================
+objective_singularity_2 = {
+	entity = "construction_platform_entity"
+	construction_entity = "construction_platform_entity"
+	portrait = "GFX_megastructure_construction_background"
+	
+	place_entity_on_planet_plane = no
+	entity_offset = { x = @entity_x y = @entity_y }
+	
+	upgrade_from = {
+		objective_singularity_1
+	}
+
+	build_time = @objective_singularity_megastructure_2_time
+	resources = {
+		category = megastructures
+		cost = {
+			rare_crystals  = @objective_singularity_megastructure_2_crystals
+			sr_dark_matter = @objective_singularity_megastructure_2_darkmatter
+		}
+	}
+	
+	possible = {
+		root.owner = {
+			has_technology = objective_tech_singularity_physics
+		}
+	}
+
+	on_build_complete = {
+		root.owner = {
+			add_research_option = objective_tech_singularity_engineering
+		}
+	}
+}
+
+
+# ==============================================================================
+# MEGASTRUCTURE 3: FINISHED SPHERE
+# ------------------------------------------------------------------------------
+# Empire has found all the neutronium it needs for the sphere shell
+# ==============================================================================
+objective_singularity_3 = {
+	entity = "construction_platform_entity"
+	construction_entity = "construction_platform_entity"
+	portrait = "GFX_megastructure_construction_background"
+	
+	place_entity_on_planet_plane = no
+	entity_offset = { x = @entity_x y = @entity_y }
+	
+	upgrade_from = {
+		objective_singularity_2
+	}
+
+	build_time = @objective_singularity_megastructure_3_time
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = @objective_singularity_megastructure_3_alloys
+			energy = @objective_singularity_megastructure_3_energy
+		}
+	}
+	
+	possible = {
+		root.owner = {
+			has_technology = objective_tech_singularity_engineering
+			has_completed_event_chain_counter = {
+				event_chain = objective_singularity_chain_quest 
+				counter = objective_singularity_counter_neutronium
+			}
+		}
+	}
+
+	on_build_complete = {
+		create_species = {
+			name = "Singularity"
+			class = "ROBOT"
+			portrait = "ai_crisis_2"
+			immortal = yes
+			namelist = "AI"
+			traits = {
+				trait = trait_mechanical
+			}
+		}
+		root.owner = {
+			create_leader = {
+				class = admiral
+				species = last_created
+				name = "Singularity"
+				skill = 1
+				event_leader = yes
+				traits = {
+					trait = trait_mechanical
+					trait = objective_singularity_trait 
+				}
+			}
+			add_modifier = {
+				modifier = objective_singularity_country
+				days = -1
+			}
+		}
+		last_created_leader = { 
+			set_age = 0
+			save_event_target_as = objective_singularity_leader
+		}
+	
+		create_fleet = {
+			name = "Singularity"
+			effect = {
+				set_owner = root.owner
+				create_ship = {
+					name = "Technosphere"
+					design = "objective_singularity_ship_design"
+					graphical_culture = "techno"
+					prefix = no
+					upgradable = no
+				}
+				assign_leader = event_target:objective_singularity_leader
+				set_location = fromfrom
+				set_fleet_flag = objective_singularity_fleet_flag
+			}
+			settings = { 
+				can_upgrade = no 
+				can_change_composition = no 
+				can_change_leader = no 
+				uses_naval_capacity = no
+				spawn_debris = no
+			}
+		}
+		
+		remove_megastructure = fromfrom
+		
+		root.owner = {
+			end_event_chain = objective_singularity_chain_quest
+		}
+		begin_event_chain = {
+				event_chain = objective_singularity_chain_upload
+				target = root.owner
+		}
+	}
+}

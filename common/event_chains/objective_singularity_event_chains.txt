@@ -1,0 +1,26 @@
+# Event chains.
+
+# counter, counters that can be increased and checked from effects and triggers
+#
+# Localization needed:
+# event_chain_chainnkey_title, a title to show in the situation log.
+# event_chain_chainnkey_desc, a description to show in the situation log.
+
+# Ends when sphere built
+objective_singularity_chain_quest = {
+	icon = "gfx/interface/icons/situation_log/situation_log_main_quest.dds"
+	picture = GFX_evt_technosphere
+	
+	counter = {
+		objective_singularity_counter_neutronium = {max = 3}
+	}
+}
+
+# Ends when empire absorbed
+objective_singularity_chain_upload = {
+	icon = "gfx/interface/icons/situation_log/situation_log_main_quest.dds"
+	picture = GFX_evt_sapient_ai
+	counter = {
+		objective_singularity_counter_upload = {}
+	}
+}

@@ -1,0 +1,36 @@
+
+objective_singularity_wg = {
+	casus_belli = objective_singularity_cb
+
+	hide_if_no_cb = no
+	
+	surrender_acceptance = -25
+
+	potential = {
+		is_country_type = objective_singularity_country_type
+	}
+	possible = {
+		always = yes
+	}
+	on_accept = {
+		if = {
+			limit = {
+				is_country_type = fallen_empire			
+			}
+			custom_tooltip = wg_humiliation_fe_accept
+			save_event_target_as = fallen_empire_humiliator
+			from = { fallen_empire_humiliate_effect = yes }			
+			
+			else = {			
+				custom_tooltip = wg_humiliation_accept
+				hidden_effect = {	
+					from = { add_modifier = { modifier = humiliated days = 3600 } }
+				}			
+			}
+		}
+	}
+	
+	ai_weight = {
+		weight = 1
+	}
+}

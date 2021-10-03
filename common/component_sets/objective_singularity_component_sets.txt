@@ -1,0 +1,6 @@
+component_set = { # Nanobot Assimilation
+	key = "OBJECTIVE_SINGULARITY_COMPONENT_SET"
+	
+	icon = "GFX_ship_part_nanobot_diffuser"
+	icon_frame = 1
+}

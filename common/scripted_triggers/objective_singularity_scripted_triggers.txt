@@ -1,0 +1,36 @@
+# Check if a planet can be targetd by a planet killer weapon
+# Scope:
+#   this = planet being targeted
+#   from = fleet
+#can_destroy_planet_with_PLANET_DESTRUCTION_COMPONENT = {
+#	...
+#}
+
+can_destroy_planet_with_OBJECTIVE_SINGULARITY_WEAPON = {
+	is_colony = yes
+	
+	custom_tooltip = {
+		fail_text = no_assimilatable_pops
+		any_owned_pop = {
+			is_valid_pop_for_OBJECTIVE_SINGULARITY_WEAPON = yes
+		}
+	}
+	
+	custom_tooltip = {
+		fail_text = is_not_hostile_or_primitive
+	
+		exists = owner
+		OR = {
+			owner = { is_at_war_with = from.owner }
+			owner = { is_same_value = from.owner }
+		}
+	}
+}
+
+is_valid_pop_for_OBJECTIVE_SINGULARITY_WEAPON = {
+	NOR = {
+		has_trait = trait_hive_mind
+		has_trait = trait_machine_unit
+		is_sapient = no
+	}
+}

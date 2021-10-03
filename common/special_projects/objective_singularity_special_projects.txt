@@ -1,0 +1,115 @@
+@objective_singularity_project_time = 1  # 1800
+
+# ==============================================================================
+# STAGE 3: SUPERSTRUCTURE
+# ------------------------------------------------------------------------------
+# Must gather neutronium from 3/4 neutron stars
+# ==============================================================================
+special_project = {
+	key = "OBJECTIVE_SINGULARITY_3a_PROJECT"
+	cost = 0
+	event_chain = objective_singularity_chain_quest
+	days_to_research = @objective_singularity_project_time
+	tech_department = engineering_technology
+	
+	event_scope = ship_event
+	
+	requirements = {
+		shipclass_constructor = 1
+	}
+	
+	on_success = {
+		owner = {
+			add_event_chain_counter = {
+				event_chain = objective_singularity_chain_quest
+				counter = "objective_singularity_counter_neutronium"
+				amount = 1 
+			}
+		}
+	}
+	
+	on_fail = {
+	}
+}
+
+special_project = {
+	key = "OBJECTIVE_SINGULARITY_3b_PROJECT"
+	cost = 0
+	event_chain = objective_singularity_chain_quest
+	days_to_research = @objective_singularity_project_time
+	tech_department = engineering_technology
+	
+	event_scope = ship_event
+	
+	requirements = {
+		shipclass_constructor = 1
+	}
+	
+	on_success = {
+		owner = {
+			add_event_chain_counter = {
+				event_chain = objective_singularity_chain_quest 
+				counter = "objective_singularity_counter_neutronium"
+				amount = 1 
+			}
+		}
+	}
+	
+	on_fail = {
+	}
+}
+
+special_project = {
+	key = "OBJECTIVE_SINGULARITY_3c_PROJECT"
+	cost = 0
+	event_chain = objective_singularity_chain_quest
+	days_to_research = @objective_singularity_project_time
+	tech_department = engineering_technology
+	
+	event_scope = ship_event
+	
+	requirements = {
+		shipclass_constructor = 1
+	}
+	
+	on_success = {
+		owner = {
+			add_event_chain_counter = {
+				event_chain = objective_singularity_chain_quest 
+				counter = "objective_singularity_counter_neutronium"
+				amount = 1 
+			}
+		}
+	}
+	
+	on_fail = {
+	}
+}
+
+special_project = {
+	key = "OBJECTIVE_SINGULARITY_3d_PROJECT"
+	cost = 0
+	event_chain = objective_singularity_chain_quest
+	days_to_research = @objective_singularity_project_time
+	tech_department = engineering_technology
+	
+	event_scope = ship_event
+	
+	requirements = {
+		shipclass_constructor = 1
+	}
+	
+	on_success = {
+		owner = {
+			add_event_chain_counter = {
+				event_chain = objective_singularity_chain_quest 
+				counter = "objective_singularity_counter_neutronium"
+				amount = 1 
+			}
+		}
+	}
+	
+	on_fail = {
+	}
+}
+
