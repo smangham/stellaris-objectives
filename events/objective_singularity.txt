@@ -139,14 +139,6 @@ planet_event = {
 				}
 			}
 			kill_pop = yes
-			
-			from.owner = {
-				add_event_chain_counter = {
-						event_chain = objective_singularity_chain_upload 
-						counter = objective_singularity_counter_upload
-						amount = 1 
-					} 
-			}
 		}
 		every_owned_pop = {
 			limit = {
@@ -193,7 +185,36 @@ planet_event = {
 		}
 		
 		# Has the population of the empire been completely uploaded?
-		objective_singularity_apply_modifiers = yes
+		from.owner = {
+			random_owned_fleet = {
+				limit = {
+					has_fleet_flag = objective_singularity_fleet_flag
+				}
+				save_event_target_as = singularity_fleet
+			}
+	
+			remove_modifier = objective_singularity_country
+			add_modifier = {
+				modifier = objective_singularity_country
+				multiplier = objective_singularity_uploads
+				days = -1
+			}
+		}
+		
+		event_target:singularity_fleet = {
+			set_variable = {
+				which = objective_singularity_uploads 
+				value = owner
+			}
+	
+			remove_modifier = objective_singularity_fleet
+			add_modifier = {
+				modifier = objective_singularity_fleet
+				multiplier = objective_singularity_uploads
+				days = -1
+			}
+		}
+		
 		from.owner = {
 			country_event = { id = objective_singularity_quest.3000 }
 		}

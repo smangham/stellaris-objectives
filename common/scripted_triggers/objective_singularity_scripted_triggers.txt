@@ -12,7 +12,11 @@ can_destroy_planet_with_OBJECTIVE_SINGULARITY_WEAPON = {
 	custom_tooltip = {
 		fail_text = no_assimilatable_pops
 		any_owned_pop = {
-			is_valid_pop_for_OBJECTIVE_SINGULARITY_WEAPON = yes
+			NOR = {
+				has_trait = trait_hive_mind
+				has_trait = trait_machine_unit
+				is_sapient = no
+			}
 		}
 	}
 	
@@ -27,10 +31,3 @@ can_destroy_planet_with_OBJECTIVE_SINGULARITY_WEAPON = {
 	}
 }
 
-is_valid_pop_for_OBJECTIVE_SINGULARITY_WEAPON = {
-	NOR = {
-		has_trait = trait_hive_mind
-		has_trait = trait_machine_unit
-		is_sapient = no
-	}
-}

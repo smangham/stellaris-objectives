@@ -1,5 +1,6 @@
 ﻿l_english:
- objective_singularity_chain_upload_title:0 "Ascension: Singularity"
+
+ objective_singularity_chain_upload_title:0 "Ascension - Singularity"
  objective_singularity_chain_upload_desc:0 "Our Singularity Technosphere has been constructed. Now we simply need to upload our minds to it- finally freeing ourselves from the bounds of mortality. Should we wish, we may upload others too..."
  
  objective_singularity.1001.name:0 "$objective_singularity_chain_upload_title$@"
@@ -13,6 +14,3 @@
 
  objective_singularity_counter_upload:0 "Uploaded Pops"
  objective_singularity_counter_upload:0 "Pops uploaded to the Singularity."
-
- objective_score:0 "Score"
- objective_score_desc:0 ""
